@@ -9,24 +9,20 @@ const emailList = new Vue({
   name: "emailList",
   el: "#root",
   data: {
-    randomEmail: "",
     emails: [],
   },
-  computed: {
-    getEmailList() {
-      for (let i = 1; i <= 10; i++) {
-        this.emails.push(this.randomEmail);
-        console.log(this.randomEmail);
-      }
-    },
-  },
+
   methods: {
     getRandomEmail() {
       axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((response) => {
-        this.randomEmail = response.data.response;
         console.log(response.data.response);
-        console.log(this.randomEmail);
+        this.emails.push(response.data.response);
       });
     },
+  },
+  mounted() {
+    for (let i = 1; i <= 10; i++) {
+      this.getRandomEmail();
+    }
   },
 });
