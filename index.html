@@ -17,9 +17,14 @@
   <body>
     <!-- Email List -->
     <section id="root">
-      <ul>
-        <li v-for="email in emails">{{email}}</li>
-      </ul>
+      <div v-if="emails.length !== 10">Stiamo preparando la lista...</div>
+      <div v-else>
+        <h3>La lista è completa!</h3>
+        <hr />
+        <ul>
+          <li v-for="email in emails">{{email}}</li>
+        </ul>
+      </div>
     </section>
     <!-- JS Script -->
     <script src="js/script.js"></script>
